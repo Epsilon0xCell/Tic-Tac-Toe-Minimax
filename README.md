@@ -1,8 +1,8 @@
-![Tic Tac Toe banner](banner.png)
+![Tic Tac Toe Minimax banner](banner.png)
 
-# Tic-Tac-Toe
+# Tic-Tac-Toe-Minimax
 
-A basic Python Tic-Tac-Toe game for the terminal. Play against a friend on the
+A basic Python Tic-Tac-Toe-Minimax game for the terminal. Play against a friend on the
 same keyboard, or against the computer.
 
 Requirements: Python 3, standard library only.
