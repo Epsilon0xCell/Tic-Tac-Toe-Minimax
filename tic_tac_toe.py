@@ -90,7 +90,7 @@ def read_move(board, player):
         except EOFError:
             print()
             return None
-        if not raw.isdigit() or not 1 <= int(raw) <= 9:
+        if not raw.isascii() or not raw.isdigit() or not 1 <= int(raw) <= 9:
             print("Please enter a number from 1 to 9.")
             continue
         idx = int(raw) - 1
@@ -137,20 +137,31 @@ def main(argv=None):
     parser.add_argument("--hard", action="store_true",
                         help="with --cpu: computer plays perfectly (unbeatable)")
     args = parser.parse_args(argv)
+    if args.hard and args.pvp:
+        parser.error("--hard only applies with --cpu")
 
     scores = {"X": 0, "O": 0, "draws": 0}
     print("Tic-Tac-Toe. Cells are numbered 1-9 as shown on the board.")
     while True:
         vs_cpu = args.cpu
         if not args.pvp and not args.cpu:
-            try:
-                choice = input("Mode: [1] two players  [2] vs computer  [q] quit: ").strip().lower()
-            except EOFError:
-                print()
+            quit_requested = False
+            while True:
+                try:
+                    choice = input("Mode: [1] two players  [2] vs computer  [q] quit: ").strip().lower()
+                except EOFError:
+                    print()
+                    quit_requested = True
+                    break
+                if choice == "q":
+                    quit_requested = True
+                    break
+                if choice in ("1", "2"):
+                    vs_cpu = choice == "2"
+                    break
+                print("Please enter 1, 2, or q.")
+            if quit_requested:
                 break
-            if choice == "q":
-                break
-            vs_cpu = choice == "2"
         play_game(vs_cpu=vs_cpu, hard=args.hard, scores=scores)
         print("Score - X: {}  O: {}  Draws: {}".format(scores["X"], scores["O"], scores["draws"]))
         try:
