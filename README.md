@@ -48,13 +48,27 @@ same player is asked again. At the mode prompt, enter `1` for two players,
 
 After each game the score is printed and you can play again with `y`. Any
 other answer ends the session and prints the final score. Closing input
-(EOF) at a move prompt abandons the current game without changing the
-score, and EOF at the mode or play-again prompt ends the session. Exit
-status is 0.
+(EOF) or pressing Ctrl-C at a move prompt abandons the current game
+without changing the score, and EOF or Ctrl-C at the mode or play-again
+prompt ends the session. Exit status is 0.
+
+## Tests
+
+```sh
+python3 -m unittest
+```
+
+32 tests: every win line for both marks, the win-on-the-last-move rule,
+the casual computer's win, block, and center order, an exhaustive
+game-tree walk proving the hard computer never loses as X or as O, move
+entry (including the superscript character that passes `isdigit()` but
+crashes `int()`), scripted games and menu sessions, and EOF and Ctrl-C
+at each prompt.
 
 ## Files
 
 - `tic_tac_toe.py` - the whole game
+- `test_tic_tac_toe.py` - the test suite
 - `logo.png`, `banner.png` - project branding
 - `LICENSE` - MIT license
 

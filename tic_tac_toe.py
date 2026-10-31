@@ -121,7 +121,10 @@ def read_move(board, player):
     while True:
         try:
             raw = input("Player {} - enter a cell number (1-9): ".format(player)).strip()
-        except EOFError:
+        except (EOFError, KeyboardInterrupt):
+            # Closing input and Ctrl-C both abandon the game here. The
+            # caller prints the abandon line and no score changes, the
+            # same as an EOF, instead of dying in a traceback.
             print()
             return None
         # I require ASCII digits, not isdigit() alone. The superscript
@@ -203,14 +206,15 @@ def main(argv=None):
         vs_cpu = args.cpu
         if not args.pvp and not args.cpu:
             # I use a flag here instead of breaking straight out because
-            # the inner prompt has two ways to end without a game, typing
-            # q and closing input, and both have to skip play_game() and
-            # still land on the final score print below.
+            # the inner prompt has three ways to end without a game,
+            # typing q, closing input, and Ctrl-C, and all three have to
+            # skip play_game() and still land on the final score print
+            # below.
             quit_requested = False
             while True:
                 try:
                     choice = input("Mode: [1] two players  [2] vs computer  [q] quit: ").strip().lower()
-                except EOFError:
+                except (EOFError, KeyboardInterrupt):
                     print()
                     quit_requested = True
                     break
@@ -228,12 +232,12 @@ def main(argv=None):
                 break
         play_game(vs_cpu=vs_cpu, hard=args.hard, scores=scores)
         print("Score - X: {}  O: {}  Draws: {}".format(scores["X"], scores["O"], scores["draws"]))
-        # Only a plain y plays again. Enter, n, yes, and closing input
-        # all end the session. I would rather end on a stray answer than
-        # start a game nobody asked for.
+        # Only a plain y plays again. Enter, n, yes, closing input, and
+        # Ctrl-C all end the session. I would rather end on a stray
+        # answer than start a game nobody asked for.
         try:
             again = input("Play again? [y/N]: ").strip().lower()
-        except EOFError:
+        except (EOFError, KeyboardInterrupt):
             print()
             break
         if again != "y":
