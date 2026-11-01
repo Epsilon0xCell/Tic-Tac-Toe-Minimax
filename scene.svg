@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" role="img" aria-label="Reef ledge in three depths: warden light, sonar rings and tube worms, abalone rim brightening">
+<rect width="1200" height="260" fill="#081630"/>
+<rect width="1200" height="26" fill="#03050a"/>
+<circle cx="1120" cy="52" r="7" fill="#fafaeb"><animate attributeName="opacity" values="1;1;0.15;0.15;1;1" dur="9s" repeatCount="indefinite"/></circle>
+<g fill="none" stroke="#6edce1" opacity=".55"><ellipse cx="560" cy="120" rx="60" ry="26"><animate attributeName="rx" values="40;340" dur="10s" repeatCount="indefinite"/><animate attributeName="ry" values="16;120" dur="10s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="10s" repeatCount="indefinite"/></ellipse></g>
+<g stroke="#aee6b9" stroke-width="2"><line x1="330" y1="196" x2="330" y2="168"/><circle cx="330" cy="162" r="9" fill="none"><animate attributeName="r" values="6;11;6" dur="7s" repeatCount="indefinite"/></circle><line x1="356" y1="196" x2="356" y2="168"/><circle cx="356" cy="162" r="9" fill="none"><animate attributeName="r" values="11;6;11" dur="11s" repeatCount="indefinite"/></circle></g>
+<path d="M0 208 L300 192 L700 204 L1200 190 L1200 260 L0 260 Z" fill="#10141c"/>
+<ellipse cx="520" cy="222" rx="86" ry="34" fill="#1e345c" stroke="#6edce1" stroke-width="3"><animate attributeName="stroke-opacity" values=".45;1;.45" dur="10s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="520" cy="222" rx="52" ry="19" fill="#bde0d6"/>
+<g fill="none" stroke="#b8ebf0"><circle cx="700" cy="170" r="4"><animate attributeName="cy" values="180;90" dur="8s" repeatCount="indefinite"/><animate attributeName="cx" values="700;724" dur="8s" repeatCount="indefinite"/></circle><circle cx="736" cy="186" r="3"><animate attributeName="cy" values="196;110" dur="11s" repeatCount="indefinite"/><animate attributeName="cx" values="736;756" dur="11s" repeatCount="indefinite"/></circle></g>
+</svg>

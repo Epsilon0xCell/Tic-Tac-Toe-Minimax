@@ -1,6 +1,16 @@
-![Tic Tac Toe Minimax banner](banner.png)
+![Intro scenery](intro-banner.png)
+
 
 # Tic-Tac-Toe-Minimax
+
+![Wordmark banner](banner.png)
+
+![Animated scene](scene.svg)
+
+![Separator](sep-heavy.svg)
+
+> **Seized goods tag:** --hard belongs only beside --cpu, and Ctrl-C or closed input at a move abandons that game with no score change.
+
 
 A basic Python Tic-Tac-Toe-Minimax game for the terminal. Play against a friend on the
 same keyboard, or against the computer.
