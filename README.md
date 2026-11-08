@@ -1,9 +1,11 @@
-![Intro scenery](intro-banner.png)
+![Intro scenery: a hand holding a grey pebble over the last empty square of a tic-tac-toe grid drawn in wet sand, every other square filled with shell crosses and pebble rings, foam reaching in at the corner](intro-banner.png)
 
 
 # Tic-Tac-Toe-Minimax
 
-![Wordmark banner](banner.png)
+![Wordmark banner: a large tic-tac-toe grid drawn in wet sand at the water's edge, pebble rings and shell crosses laid across eight squares, faint ghost scratches of possible moves fading in the one empty centre square, foam along the shore edge](banner.png)
+
+<p align="center"><img src="logo.png" alt="Tic-Tac-Toe-Minimax logo: a tic-tac-toe grid scratched into smooth wet sand seen from directly above, shell crosses and a pebble ring placed on it and the centre square still empty" width="200"></p>
 
 ![Animated scene](scene.svg)
 

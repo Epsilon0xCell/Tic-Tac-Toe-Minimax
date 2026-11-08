@@ -3,47 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tic-Tac-Toe-Minimax: Warden Patrol Log</title>
-<meta name="description" content="A terminal Tic-Tac-Toe game in Python 3, standard library only. Two players on one keyboard, or X against the computer in casual or hard minimax play.">
+<title>Tic-Tac-Toe-Minimax: The Sand Board</title>
+<meta name="description" content="A terminal tic-tac-toe game in Python, standard library only: two players on one keyboard, or the computer at two difficulties, casual and an unbeatable minimax.">
 <style>
-@font-face{font-family:'Anuphan';src:url('fonts/Anuphan.ttf') format('truetype');}
-@font-face{font-family:'Cabin';src:url('fonts/Cabin.ttf') format('truetype');}
-:root{--deep:#081630;--panel:#0e2450;--cyan:#6edce1;--green:#6ed28c;--ink:#eef4f2}
-*{box-sizing:border-box}body{margin:0;background:var(--deep);color:var(--ink);font-family:'Cabin',sans-serif;line-height:1.65}
-h1,h2{font-family:'Anuphan',sans-serif;color:var(--cyan)}
-.hero{padding:2rem 6vw 1rem;max-width:1000px;margin:0 auto}.hero img.banner{width:100%;height:auto}.logo{width:92px;height:auto}
-main{padding:0 6vw 3rem;max-width:1000px;margin:0 auto}
-.entry{background:var(--panel);padding:1.2rem 1.5rem;margin:1.4rem 0;border-top:1px solid rgba(110,220,225,.35)}
-.entry .datelabel{font-family:'Anuphan',sans-serif;color:var(--green);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
-.tag{display:inline-block;background:#0a1c3e;color:#f2f6f2;font-family:'Anuphan',sans-serif;text-transform:uppercase;text-decoration:none;padding:.55rem 1rem;border-top:3px solid var(--cyan);position:relative;margin:.3rem .3rem .3rem 0}
-.tag:before{content:'';position:absolute;left:8px;top:1px;width:7px;height:7px;border-radius:50%;background:var(--deep)}
-.tag:hover{background:linear-gradient(to top,rgba(110,210,140,.35),#0a1c3e 55%)}
-.tag:active{background:#050f24}.tag:focus-visible{outline:none;box-shadow:0 3px 0 var(--cyan)}
-a{color:var(--cyan)}a:before{content:'';display:inline-block;width:.55em;height:.55em;border:2px solid var(--cyan);border-radius:50%;margin-right:.35em}
-a:hover:before{box-shadow:0 0 0 3px rgba(110,220,225,.35)}.tag:before{content:''}
-.sonar{border-top:2px solid var(--cyan);margin:2rem auto;position:relative;width:100%;opacity:.6}
-.sonar:after{content:'...';position:absolute;left:50%;top:-14px;transform:translateX(-50%);color:var(--cyan);letter-spacing:.6em;background:var(--deep);padding:0 .4em}
-pre{background:#050f24;padding:1rem;overflow-x:auto}
-.seized{background:#e8e4d2;color:#14213a;padding:.9rem 1.1rem;max-width:36rem}
-footer{padding:2rem 6vw}
+@font-face{font-family:'Patua One';src:url('fonts/PatuaOne-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Open Sans';src:url('fonts/OpenSans-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Open Sans';src:url('fonts/OpenSans-600.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Open Sans';src:url('fonts/OpenSans-700.woff2') format('woff2');font-weight:700}
+:root{--sand:#e9dcc0;--wet:#6d5b3f;--shell:#fffdf4;--pebble:#5c564c;--glass:#2f7d68;--glassdk:#1f5a4a;--line:#cbbd97}
+*{box-sizing:border-box} body{margin:0;background:var(--sand);color:#3d362a;font-family:'Open Sans',sans-serif;line-height:1.65}
+h1,h2{font-family:'Patua One',serif;color:var(--wet);font-weight:400}
+.hero{background:linear-gradient(168deg,#7d6a4a 0%,var(--wet) 58%,#57452e 100%);padding:2.2rem 6vw 1.8rem}
+.hero .inner{max-width:1020px;margin:0 auto}
+.hero img.wide{width:100%;height:auto;display:block;border:6px solid var(--shell);border-radius:4px;box-shadow:0 4px 18px rgba(40,30,10,.4)}
+.hero .row{display:flex;gap:1.1rem;align-items:flex-start;margin-top:1.2rem}
+.hero .row img{width:92px;height:92px;object-fit:cover;border-radius:6px;border:3px solid var(--shell);background:var(--shell)}
+.hero h1{margin:.1rem 0 .3rem;font-size:2.7rem;color:#fdf6dd}
+.hero p{max-width:44rem;color:#f1e7cb}
+main{padding:0 6vw 3rem;max-width:1020px;margin:0 auto}
+.card{background:var(--shell);border:1px solid var(--line);border-left:6px solid var(--glass);border-radius:6px;padding:1.2rem 1.5rem;margin:1.6rem 0;box-shadow:0 2px 8px rgba(90,70,40,.14)}
+.card h2{margin:.1rem 0 .5rem;font-size:1.8rem}
+.card p{margin:.4rem 0}
+.strip{background:#38312a;color:#f3ecd7;padding:1rem 1.2rem;overflow-x:auto;font-family:ui-monospace,Menlo,monospace;border-radius:4px;border-left:6px solid var(--glass)}
+.btn{display:inline-block;background:var(--glass);color:#f6fffa;font-family:'Open Sans',sans-serif;font-weight:700;text-decoration:none;padding:.55rem 1.1rem;border-radius:999px;margin:.3rem .4rem .3rem 0}
+.btn:hover{background:var(--glassdk);color:#f6fffa}.btn:active{transform:translateY(2px)}
+.btn:focus-visible{outline:2px dashed var(--glass);outline-offset:3px}
+a{color:var(--glassdk);font-weight:700}
+.board{display:grid;grid-template-columns:repeat(3,3.2rem);gap:0;font-family:ui-monospace,Menlo,monospace;font-size:1.3rem;text-align:center;margin:.6rem 0}
+.board span{padding:.45rem 0;border-right:2px solid var(--pebble);border-bottom:2px solid var(--pebble)}
+.board span:nth-child(3n){border-right:none}
+.board span:nth-child(n+7){border-bottom:none}
+table{border-collapse:collapse}td{padding:.2rem .9rem .2rem 0;vertical-align:top}
+td:first-child{font-weight:700;color:var(--glassdk);white-space:nowrap}
+ul{margin:.4rem 0;padding-left:1.2rem}li{margin:.25rem 0}
+.small{font-size:.92rem}
+footer{padding:0 6vw 2.5rem;max-width:1020px;margin:0 auto;color:#8a7a5c}
 </style>
 </head>
 <body>
 <header class="hero">
-<img class="logo" src="assets/logo.png" alt="Abalone shell with a row of breathing holes">
-<img class="banner" src="assets/banner.png" alt="Unlit boat over a reef at night, its name painted along the hull, a warden light in the distance">
-<h1>Tic-Tac-Toe-Minimax</h1>
-<p>Patrol log, night entry. A terminal Tic-Tac-Toe game in Python 3, standard library only, in the single file <code>tic_tac_toe.py</code>. Cells are numbered 1 to 9 as printed on the board.</p>
-<p><a class="tag" href="https://github.com/Epsilon0xCell/Tic-Tac-Toe-Minimax">Open the repo</a> <a class="tag" href="#tempers">The two tempers</a></p>
+<div class="inner">
+<img class="wide" src="assets/intro-banner.png" alt="A hand holding a grey pebble over the last empty square of a tic-tac-toe grid drawn in wet sand, every other square filled with shell crosses and pebble rings, foam reaching in at the corner">
+<div class="row"><img src="assets/logo.png" alt="Tic-Tac-Toe-Minimax logo: a tic-tac-toe grid scratched into smooth wet sand seen from directly above, shell crosses and a pebble ring placed on it and the centre square still empty"><div><h1>Tic-Tac-Toe-Minimax</h1><p>A basic tic-tac-toe game for the terminal, written in Python with the standard library only. Play against a friend on the same keyboard, or against the computer at two difficulties: a casual mode that plays a fair game, and a hard minimax mode that has already walked every branch of the tree, so the last empty square is a choice among losses.</p><p><a class="btn" href="https://github.com/Epsilon0xCell/Tic-Tac-Toe-Minimax">Open the repo</a> <a class="btn" href="#proof">The tests</a></p></div></div>
+</div>
 </header>
 <main>
-<div class="sonar"></div>
-<section class="entry"><span class="datelabel">Entry: modes</span><h2>Sharing a keyboard, or facing the machine</h2><p>Two people can share one keyboard:</p><pre>python3 tic_tac_toe.py --pvp</pre><p>Against the machine, the visitor plays X and always moves first, while the computer answers as O:</p><pre>python3 tic_tac_toe.py --cpu
-python3 tic_tac_toe.py --cpu --hard</pre><div class="seized"><p>Seized goods tag: <code>--hard</code> is allowed only beside <code>--cpu</code>. Pairing it with <code>--pvp</code> is refused by argparse with exit status 2.</p></div></section>
-<section class="entry" id="tempers"><span class="datelabel">Entry: tempers</span><h2>Casual and hard, stated honestly</h2><p>Casual play takes a winning cell when one exists, blocks the human line when that is urgent, prefers the centre afterwards, and otherwise chooses a free cell at random.</p><p>Hard play searches the whole game tree with minimax scored only as win, draw, or loss, worth 1, 0, and minus 1, with no bonus for winning sooner, then picks at random among the moves tied for best. Hard games vary while never losing. The proof offered by the tests: an exhaustive walk found zero human wins, and the full suite counts 32 tests run with <code>python3 -m unittest</code>.</p></section>
-<div class="sonar"></div>
-<section class="entry"><span class="datelabel">Entry: table manners</span><h2>How the program behaves at the board</h2><p>A mistyped or occupied cell is rejected and the same player is asked again. The score for X wins, O wins, and draws carries across rounds. Only a plain <code>y</code> starts another round.</p><div class="seized"><p>Seized goods tag: Ctrl-C or closed input at a move abandons that game with no score change.</p></div></section>
+<section class="card"><h2>Run it</h2><div class="strip">python3 tic_tac_toe.py            # asks which mode you want<br>python3 tic_tac_toe.py --pvp      # two human players<br>python3 tic_tac_toe.py --cpu      # you are X, computer is O<br>python3 tic_tac_toe.py --cpu --hard</div><p>Requirements: Python 3, standard library only, nothing to install. <code>--hard</code> belongs only beside <code>--cpu</code>: combining <code>--hard</code> with <code>--pvp</code> is rejected with an argparse error and exit status 2.</p></section>
+<section class="card"><h2>The board</h2><div class="board"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div><p>Cells are numbered 1 to 9 as shown. Type the number of the cell you want. An entry that is not a number from 1 to 9, or a cell that is already taken, is rejected with a message and the same player is asked again. At the mode prompt, enter <code>1</code> for two players, <code>2</code> for the computer, or <code>q</code> to quit; anything else prints <code>Please enter 1, 2, or q.</code> and asks again. A running score (X wins, O wins, draws) is kept across rounds.</p></section>
+<section class="card"><h2>The two difficulties</h2><table>
+<tr><td>Casual</td><td>takes wins, blocks losses, prefers the center, otherwise plays a random free cell.</td></tr>
+<tr><td>Hard</td><td>minimax play, unbeatable: an exhaustive game-tree check following the computer's moves found 0 human wins.</td></tr>
+</table></section>
+<section class="card"><h2>Leaving a game</h2><p>After each game the score is printed and you can play again with <code>y</code>; any other answer ends the session and prints the final score. Closing input (EOF) or pressing Ctrl-C at a move prompt abandons the current game without changing the score, and EOF or Ctrl-C at the mode or play-again prompt ends the session. Exit status is 0.</p></section>
+<section class="card" id="proof"><h2>The tests</h2><div class="strip">python3 -m unittest</div><p>32 tests: every win line for both marks, the win-on-the-last-move rule, the casual computer's win, block, and center order, an exhaustive game-tree walk proving the hard computer never loses as X or as O, move entry (including the superscript character that passes <code>isdigit()</code> but crashes <code>int()</code>), scripted games and menu sessions, and EOF and Ctrl-C at each prompt.</p></section>
+<section class="card"><h2>The files</h2><p class="small"><code>tic_tac_toe.py</code>, the whole game. <code>test_tic_tac_toe.py</code>, the test suite. <code>LICENSE</code>, the MIT license. The full behaviour notes are in the <a href="https://github.com/Epsilon0xCell/Tic-Tac-Toe-Minimax">repo README</a>.</p></section>
 </main>
-<footer><p>Licence: MIT. The ledge at slack water: one abalone still clamped where it began, unprised. That is the hard mode result, drawn as a reef.</p></footer>
+<footer><p>Every road left leads nowhere against the hard computer: the tree is small enough to walk in full, and the check found no human win anywhere in it.</p></footer>
 </body>
 </html>
